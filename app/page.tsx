@@ -1,4 +1,6 @@
 "use client";
+import * as React from "react";
+import Image from 'next/image';
 import { 
   FaTwitter,  
   FaInstagram, 
@@ -7,13 +9,13 @@ import {
 } from 'react-icons/fa';
 import { useState, useEffect, useRef } from "react";
 import Wavify from "react-wavify";
-import { Howl } from "howler";
+
 import { PiSunDimThin } from "react-icons/pi";
 import { AiFillMoon } from "react-icons/ai";
 import { PiSpeakerNoneFill } from "react-icons/pi";
 import { motion } from "framer-motion";
 import { FaUser, FaLink, FaBriefcase, FaQuestionCircle, FaEnvelope } from "react-icons/fa";
-import Image from 'next/image';
+
 
 // Navigation links and their icons/sounds, with improved initial positions
 const linkData = [
@@ -104,17 +106,17 @@ const linkData = [
 // Small page components for each section
 function AboutPage() {
   return (
-    <div className="flex flex-col h-full p-4 overflow-y-auto">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">about</h1>
-      </div>
-      <div className="flex flex-row mb-8 gap-4">
+    <div className="flex flex-col h-full">
+      {/* Fixed Header */}
+      <div className="flex flex-row gap-4 items-center p-4 border-zinc-800 bg-transparent sticky top-0 z-10">
         <div className="flex-1">
-          <h2 className="text-xl text-orange-400 font-bold">Jaanvi Nayak ジャーンヴィ</h2>
-          <p className="text-sm font-medium">PH-based freelance developer</p>
-          <p className="text-sm font-medium">Former web developer at MedGrocer</p>
+          <h2 className="text-2xl font-bold">Jaanvi Nayak</h2>
+          <p className="text-lg font-medium">
+            IN-based fullstack developer
+          </p>
+          <h1 className="pt-3 border-b"></h1>
         </div>
-        <div className="relative w-32 h-32 rounded-full overflow-hidden flex-shrink-0">
+        <div className="relative w-16 h-16 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0">
           <Image
             src="/images/profile.jpg"
             alt="Jaanvi Nayak"
@@ -125,23 +127,31 @@ function AboutPage() {
           />
         </div>
       </div>
-      <p className="text-lg mb-8">
-        Interested in working with me? Send me an email at hi@jaanvi.com! :)
-      </p>
-      <div className="mb-8">
-        <h3 className="text-xl font-bold mb-4">EDUCATION</h3>
-        <p className="text-lg">Bachelor of Science in Computer Science</p>
-        <p className="text-lg">(GRADUATED CUM LAUDE 2023)</p>
-      </div>
-      {/* Add more content here to test scrollability */}
-      <div className="mb-8">
-        <h3 className="text-xl font-bold mb-4">EXTRA</h3>
-        <p className="text-lg">You can keep writing more stuff here and it will scroll inside the container!</p>
-        <p className="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt consectetur, nisi nisl aliquam nunc, eget aliquam nisl nunc euismod nunc.</p>
-      </div>
+
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto p-2">
+       <div className="mb-8">
+         <h3 className="text-xl font-bold mb-4">
+           behind the code
+         </h3>
+         <ul className="list-disc pl-5 text-lg space-y-2">
+           <li>
+             build seamless <b>backend APIs</b>, handle <b>auth</b>, and design <b>microservices</b>,
+           </li>
+           <li>
+             explore new frameworks like <b>Next.js</b>, <b>React</b>, and <b>Angular</b>,
+           </li>
+           <li>
+             build full-stack apps using <b>MERN</b> and now moving into <b>Go (Golang)</b> for future backend projects.
+           </li>
+         </ul>
+       </div>
+     </div>
     </div>
   );
 }
+
+
 function LinksPage() {
   const links = [
     { name: "twitter", url: "https://x.com/itsjaanvi22", icon: <FaTwitter size={30} /> },
@@ -176,75 +186,115 @@ function LinksPage() {
     </div>
   );
 }
+
 function WorkPage() {
   return (
     <div className="flex flex-col flex-1 p-4 overflow-y-auto">
-      <div className="flex justify-between items-center mb-2"></div>
-      <div className="mb-4">
-        <p className="text-lg">
-          Accepting work offers via my work email!<br />
-          I do illustration, animation, web design, and web/app development. :)
-        </p>
-      </div>
+      {/* Skills Section */}
       <div className="mb-8">
-        <h2 className="text-xl font-bold mb-4">TOOLS</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          <p className="text-lg">Adobe Photoshop</p>
-          <p className="text-lg">Adobe Animate</p>
-          <p className="text-lg">Clip Studio Paint</p>
-          <p className="text-lg">Unity 2D/3D</p>
-          <p className="text-lg">Adobe Illustrator</p>
-          <p className="text-lg">Adobe Premiere</p>
-          <p className="text-lg">Adobe After Effects</p>
-          <p className="text-lg">Blender</p>
-          <p className="text-lg">OpenToonz</p>
-          <p className="text-lg">InDesign</p>
+        <h2 className="text-xl font-bold mb-4">SKILLS</h2>
+        <div className="flex flex-wrap gap-3">
+          {[
+            "React",
+            "Go",
+            "HTML",
+            "CSS",
+            "Python",
+            "JavaScript",
+            "TypeScript",
+            "Next.js",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Tailwind CSS",
+            "JWT Auth",
+            "Socket.io",
+            "Google Maps API",
+          ].map((skill) => (
+            <span
+              key={skill}
+              className={`
+                px-4 py-2 rounded-xl font-semibold text-base
+                border border-black/10 dark:border-white/10
+                bg-white/40 dark:bg-black/20
+                shadow-sm
+                transition
+                select-none
+                backdrop-blur
+                hover:bg-orange-100/60 dark:hover:bg-orange-400/20
+              `}
+              style={{
+                display: "inline-block",
+                minWidth: 80,
+                textAlign: "center",
+                letterSpacing: "0.01em",
+                boxShadow: "0 2px 8px 0 rgba(0,0,0,0.04)",
+              }}
+            >
+              {skill}
+            </span>
+          ))}
         </div>
       </div>
-      <div>
-        <h2 className="text-xl font-bold mb-4">DEVELOPMENT</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          <p className="text-lg">Go</p>
-          <p className="text-lg">C++</p>
-          <p className="text-lg">Python</p>
-          <p className="text-lg">JavaScript</p>
-          <p className="text-lg">HTML/CSS</p>
-          <p className="text-lg">React</p>
-          <p className="text-lg">Next.js</p>
+
+      {/* Projects Section */}
+      <div className="mb-8">
+        <h2 className="text-xl font-bold mb-4">PROJECTS</h2>
+
+        {/* Project 1: UBER Clone */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold">Ride-Booking App (UBER Clone)</h3>
+          <ul className="list-disc pl-5 text-base mt-2 space-y-1">
+            <li>Used <strong>MERN Stack</strong> for scalable, full-stack development.</li>
+            <li>Integrated <strong>Google Maps API</strong> for live location tracking and route calculation.</li>
+            <li>Implemented <strong>Socket.io</strong> for real-time driver–rider communication.</li>
+            <li>Designed clean, responsive UI with <strong>Tailwind CSS</strong>.</li>
+          </ul>
         </div>
-      </div>
-      {/* Add more content here to test scrollability */}
-      <div className="mb-8 mt-8">
-        <h3 className="text-xl font-bold mb-4">EXTRA</h3>
-        <p className="text-lg">You can keep writing more stuff here and it will scroll inside the container!</p>
-        <p className="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt consectetur, nisi nisl aliquam nunc, eget aliquam nisl nunc euismod nunc.</p>
+
+        {/* Project 2: Buzzed Chat App */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold">Buzzed – Real-Time Chat App</h3>
+          <ul className="list-disc pl-5 text-base mt-2 space-y-1">
+            <li>Built using the <strong>MERN Stack</strong> and <strong>Socket.io</strong> for real-time messaging with currently more than 30 active users.</li>
+            <li>Implemented user authentication with <strong>JWT</strong> and session management.</li>
+            <li>Enabled <strong>image & text sharing</strong> with a smooth and intuitive UI.</li>
+            <li>Optimized for speed and responsiveness across devices.</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
 }
+
 function ContactPage() {
   return (
     <div className="flex flex-col flex-1 p-4 overflow-y-auto">
       <div className="flex-1 flex flex-col items-center justify-start p-4">
-        <div className="mb-4 h-24 w-24 bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
-          [image]
+        <div className="relative w-16 h-16 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0">
+          <Image
+            src="/images/profile-contact.jpg"
+            alt="Jaanvi Nayak"
+            fill
+            className="object-cover"
+            priority
+            sizes="(max-width: 768px) 100vw, 128px"
+          />
         </div>
-        <p className="text-center mb-2">yayy mail!</p>
-        <p className="text-center mb-4 text-sm">
-          lets get in touch?
+        
+        <p className="pt-4 text-center mb-4 text-lg">
+          lets get in touch!
         </p>
-        <p className="text-center font-bold mb-4 text-sm"> nayakjaanvi321@gmail.com</p>
-        <a 
-          href="mailto:nayakjaanvi321@gmail.com" 
-          className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-full transition-colors text-center text-sm mb-4"
-        >
-          send me an email!
-        </a>
+        <a
+         href="https://mail.google.com/mail/?view=cm&fs=1&to=nayakjaanvi321@gmail.com"
+         target="_blank"
+         rel="noopener noreferrer"
+         className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-full transition-colors text-center text-sm mb-4"
+       >
+         send me an email!
+       </a>
         {/* Add more content here to test scrollability */}
-        <div className="mt-8">
-          <p className="text-lg">You can keep writing more stuff here and it will scroll inside the container!</p>
-          <p className="text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque euismod, urna eu tincidunt consectetur, nisi nisl aliquam nunc, eget aliquam nisl nunc euismod nunc.</p>
-        </div>
+        
       </div>
     </div>
   );
@@ -301,12 +351,12 @@ function DraggableContainer({
         left: "50%",
         transform: `translate(-50%, -50%)`,
         cursor: "grab",
-        minWidth: 260,
+        minWidth: 320,
         minHeight: 320,
         overflow: "hidden"
       }}
       className={`
-        w-[380px] h-[380px] max-w-[95vw] max-h-[90vh] rounded-2xl shadow-2xl p-6 flex flex-col
+        w-[520px] h-[400px] max-w-[98vw] max-h-[92vh] rounded-3xl shadow-2xl p-6 flex flex-col
         transition-colors duration-500
         ${isDarkMode ? "bg-gray-800 text-white" : "bg-[#FFF8E7] text-black"}
         border-2 border-black/10
@@ -393,6 +443,14 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDarkMode]);
+
   // Theme toggle handler with sound
   const toggleTheme = () => {
     setIsDarkMode((prev) => {
@@ -448,7 +506,7 @@ export default function Home() {
     filter: "drop-shadow(0 1px 0 #222)",
     background: "none",
     borderRadius: "0%",
-    boxSizing: "content-box",
+    boxSizing: "content-box" as React.CSSProperties["boxSizing"],
     padding: 0,
     margin: 0,
     display: "block",
@@ -505,7 +563,7 @@ export default function Home() {
             <span className="text-gray-800 dark:text-gray-700">hi! </span>
             <span className="text-orange-400">i'm jaanvi.</span>
           </h2>
-          <p className="text-2xl">illustrator, animator, and developer</p>
+          <p className="text-2xl">backend & web developer</p>
         </div>
         {/* Navigation with cartoon outline icons */}
         <div className="flex justify-center space-x-10 text-xl mb-6">
