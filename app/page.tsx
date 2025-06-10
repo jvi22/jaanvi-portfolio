@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import { Howl } from 'howler';
 import Image from 'next/image';
 import { 
   FaTwitter,  
@@ -301,7 +302,7 @@ function ContactPage() {
 }
 
 // Map label to page component
-const pageComponents: { [key: string]: JSX.Element } = {
+const pageComponents: { [key: string]: React.JSX.Element } = {
   about: <AboutPage />,
   links: <LinksPage />,
   work: <WorkPage />,
@@ -435,7 +436,8 @@ export default function Home() {
     });
 
     return () => {
-      Object.values(soundRefs.current).forEach((sound) => sound && sound.unload());
+      const sounds = soundRefs.current;
+      Object.values(sounds).forEach((sound) => sound && sound.unload());
       if (dayThemeRef.current) dayThemeRef.current.unload();
       if (nightThemeRef.current) nightThemeRef.current.unload();
       if (closeTabRef.current) closeTabRef.current.unload();
