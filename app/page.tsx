@@ -1,13 +1,12 @@
 "use client";
+import AboutPage from "./components/AboutPage";
+import LinksPage from "./components/LinksPage";
+import WorkPage from "./components/WorkPage";
+import ContactPage from "./components/ContactPage";
 import * as React from "react";
 import { Howl } from 'howler';
-import Image from 'next/image';
-import { 
-  FaTwitter,  
-  FaInstagram, 
-  FaLinkedin, 
-  FaGithub 
-} from 'react-icons/fa';
+import ThemeHeading from "./components/ThemeHeading";
+
 import { useState, useEffect, useRef } from "react";
 import Wavify from "react-wavify";
 
@@ -34,7 +33,7 @@ const linkData = [
     ),
     sound: "/sounds/about.mp3",
     href: "#",
-    initial: { x: -300, y: -100 },
+    initial: { x: -400, y: -100 },
   },
   {
     label: "links",
@@ -50,7 +49,7 @@ const linkData = [
     ),
     sound: "/sounds/links.mp3",
     href: "#",
-    initial: { x: -200, y: -100 },
+    initial: { x: -300, y: -100 },
   },
   {
     label: "work",
@@ -66,7 +65,7 @@ const linkData = [
     ),
     sound: "/sounds/work.mp3",
     href: "#",
-    initial: { x: -100, y: -100 },
+    initial: { x: -200, y: -100 },
   },
   {
     label: "resume",
@@ -100,213 +99,16 @@ const linkData = [
     ),
     sound: "/sounds/contact.mp3",
     href: "#",
-    initial: { x: 100, y: -100 },
+    initial: { x: -100, y: -100 },
   },
 ];
 
-// Small page components for each section
-function AboutPage() {
-  return (
-    <div className="flex flex-col h-full">
-      {/* Fixed Header */}
-      <div className="flex flex-row gap-4 items-center p-4 border-zinc-800 bg-transparent sticky top-0 z-10">
-        <div className="flex-1">
-          <h2 className="text-2xl font-bold">Jaanvi Nayak</h2>
-          <p className="text-lg font-medium">
-            IN-based fullstack developer
-          </p>
-          <h1 className="pt-3 border-b"></h1>
-        </div>
-        <div className="relative w-16 h-16 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0">
-          <Image
-            src="/images/profile.jpg"
-            alt="Jaanvi Nayak"
-            fill
-            className="object-cover"
-            priority
-            sizes="(max-width: 768px) 100vw, 128px"
-          />
-        </div>
-      </div>
-
-      {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto p-2">
-       <div className="mb-8">
-         <h3 className="text-xl font-bold mb-4">
-           behind the code
-         </h3>
-         <ul className="list-disc pl-5 text-lg space-y-2">
-           <li>
-             build seamless <b>backend APIs</b>, handle <b>auth</b>, and design <b>microservices</b>,
-           </li>
-           <li>
-             explore new frameworks like <b>Next.js</b>, <b>React</b>, and <b>Angular</b>,
-           </li>
-           <li>
-             build full-stack apps using <b>MERN</b> and now moving into <b>Go (Golang)</b> for future backend projects.
-           </li>
-         </ul>
-       </div>
-     </div>
-    </div>
-  );
-}
-
-
-function LinksPage() {
-  const links = [
-    { name: "twitter", url: "https://x.com/itsjaanvi22", icon: <FaTwitter size={30} /> },
-    { name: "instagram", url: "https://instagram.com", icon: <FaInstagram size={30} /> },
-    { name: "linkedin", url: "https://www.linkedin.com/in/dev-jaanvi/", icon: <FaLinkedin size={30} /> },
-    { name: "github", url: "https://github.com/jvi22", icon: <FaGithub size={30} /> },
-  ];
-
-  return (
-    <div className="flex flex-col flex-1 overflow-hidden">
-      <div className="flex-1 flex flex-col p-6 overflow-y-auto">
-        <div className="grid grid-cols-2 gap-6 text-center">
-          {links.map((link) => (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center p-3 rounded-lg hover:bg-gray-200/30 dark:hover:bg-gray-700/50 transition-colors"
-            >
-              <div className="mb-2 text-2xl">
-                {link.icon}
-              </div>
-              <span className="text-sm capitalize">{link.name}</span>
-            </a>
-          ))}
-        </div>
-        <p className="text-center mt-6 text-xs text-gray-500 dark:text-gray-400">
-          Clicking any of the links will open a new tab!
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function WorkPage() {
-  return (
-    <div className="flex flex-col flex-1 p-4 overflow-y-auto">
-      {/* Skills Section */}
-      <div className="mb-8">
-        <h2 className="text-xl font-bold mb-4">SKILLS</h2>
-        <div className="flex flex-wrap gap-3">
-          {[
-            "React",
-            "Go",
-            "HTML",
-            "CSS",
-            "Python",
-            "JavaScript",
-            "TypeScript",
-            "Next.js",
-            "Node.js",
-            "Express.js",
-            "MongoDB",
-            "Tailwind CSS",
-            "JWT Auth",
-            "Socket.io",
-            "Google Maps API",
-          ].map((skill) => (
-            <span
-              key={skill}
-              className={`
-                px-4 py-2 rounded-xl font-semibold text-base
-                border border-black/10 dark:border-white/10
-                bg-white/40 dark:bg-black/20
-                shadow-sm
-                transition
-                select-none
-                backdrop-blur
-                hover:bg-orange-100/60 dark:hover:bg-orange-400/20
-              `}
-              style={{
-                display: "inline-block",
-                minWidth: 80,
-                textAlign: "center",
-                letterSpacing: "0.01em",
-                boxShadow: "0 2px 8px 0 rgba(0,0,0,0.04)",
-              }}
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* Projects Section */}
-      <div className="mb-8">
-        <h2 className="text-xl font-bold mb-4">PROJECTS</h2>
-
-        {/* Project 1: UBER Clone */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold">Ride-Booking App (UBER Clone)</h3>
-          <ul className="list-disc pl-5 text-base mt-2 space-y-1">
-            <li>Used <strong>MERN Stack</strong> for scalable, full-stack development.</li>
-            <li>Integrated <strong>Google Maps API</strong> for live location tracking and route calculation.</li>
-            <li>Implemented <strong>Socket.io</strong> for real-time driver–rider communication.</li>
-            <li>Designed clean, responsive UI with <strong>Tailwind CSS</strong>.</li>
-          </ul>
-        </div>
-
-        {/* Project 2: Buzzed Chat App */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold">Buzzed – Real-Time Chat App</h3>
-          <ul className="list-disc pl-5 text-base mt-2 space-y-1">
-            <li>Built using the <strong>MERN Stack</strong> and <strong>Socket.io</strong> for real-time messaging with currently more than 30 active users.</li>
-            <li>Implemented user authentication with <strong>JWT</strong> and session management.</li>
-            <li>Enabled <strong>image & text sharing</strong> with a smooth and intuitive UI.</li>
-            <li>Optimized for speed and responsiveness across devices.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ContactPage() {
-  return (
-    <div className="flex flex-col flex-1 p-4 overflow-y-auto">
-      <div className="flex-1 flex flex-col items-center justify-start p-4">
-        <div className="relative w-16 h-16 md:w-32 md:h-32 rounded-full overflow-hidden flex-shrink-0">
-          <Image
-            src="/images/profile-contact.jpg"
-            alt="Jaanvi Nayak"
-            fill
-            className="object-cover"
-            priority
-            sizes="(max-width: 768px) 100vw, 128px"
-          />
-        </div>
-        
-        <p className="pt-4 text-center mb-4 text-lg">
-          lets get in touch!
-        </p>
-        <a
-         href="https://mail.google.com/mail/?view=cm&fs=1&to=nayakjaanvi321@gmail.com"
-         target="_blank"
-         rel="noopener noreferrer"
-         className="bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 rounded-full transition-colors text-center text-sm mb-4"
-       >
-         send me an email!
-       </a>
-        {/* Add more content here to test scrollability */}
-        
-      </div>
-    </div>
-  );
-}
-
-// Map label to page component
-const pageComponents: { [key: string]: React.JSX.Element } = {
-  about: <AboutPage />,
-  links: <LinksPage />,
-  work: <WorkPage />,
-  contact: <ContactPage />,
+// Map label to page component (as a function that takes isDarkMode)
+const pageComponents: { [key: string]: (isDarkMode: boolean) => React.JSX.Element } = {
+  about: (isDarkMode: boolean) => <AboutPage isDarkMode={isDarkMode} />,
+  links: () => <LinksPage />,
+  work: (isDarkMode: boolean) => <WorkPage isDarkMode={isDarkMode} />,
+  contact: () => <ContactPage />,
 };
 
 // Utility for generating unique IDs
@@ -372,10 +174,10 @@ function DraggableContainer({
             onClose(id);
           }}
           aria-label="Close"
-          className="text-xl font-bold bg-transparent rounded-full px-2 py-0.5 shadow-none transition "
+          className="text-xl font-bold bg-transparent rounded-full px-2 py-0.5 shadow-none transition"
           style={{
             lineHeight: 1,
-            color: "#18181b",
+            color: isDarkMode ? "#fff" : "#18181b", // White in night, dark gray in day
           }}
         >
           <span style={{ fontFamily: "monospace", fontWeight: "bold" }}>×</span>
@@ -385,6 +187,8 @@ function DraggableContainer({
     </motion.div>
   );
 }
+
+
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -561,10 +365,7 @@ export default function Home() {
         <h1 className="text-2xl font-extrabold mb-2">home</h1>
         {/* Main content */}
         <div className="flex-grow flex flex-col justify-center">
-          <h2 className="text-5xl font-extrabold mb-4">
-            <span className="text-gray-800 dark:text-gray-700">hi! </span>
-            <span className="text-orange-400">i'm jaanvi.</span>
-          </h2>
+          <ThemeHeading isDarkMode={isDarkMode} />
           <p className="text-2xl">backend & web developer</p>
         </div>
         {/* Navigation with cartoon outline icons */}
@@ -647,7 +448,7 @@ export default function Home() {
             if (!isMuted && closeTabRef.current) closeTabRef.current.play();
           }}
         >
-          {pageComponents[page.label]}
+          {pageComponents[page.label](isDarkMode)}
         </DraggableContainer>
       ))}
 
@@ -660,10 +461,10 @@ export default function Home() {
             : "#93c5fd",
         }}
         animate={{
-          y: [0, -5, 0],
+          y: [0, 5, 0],
         }}
         transition={{
-          duration: 2,
+          duration: 5,
           repeat: Infinity,
           ease: "easeInOut",
         }}
@@ -673,9 +474,9 @@ export default function Home() {
           paused={false}
           options={{
             height: 5,
-            amplitude: 20,
-            speed: 0.15,
-            points: 2,
+            amplitude: 15,
+            speed: 0.20,
+            points: 3,
           }}
         />
       </motion.div>
