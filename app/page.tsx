@@ -81,7 +81,7 @@ const linkData = [
     ),
     sound: "/sounds/resume.mp3",
     // Direct link to resume.pdf in public/documents/
-    href: "/documents/resume.pdf",
+    href: "/documents/jaanvi_resume.pdf",
     initial: { x: 0, y: -100 },
     isExternal: true,
   },
