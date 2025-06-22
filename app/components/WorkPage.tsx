@@ -91,7 +91,7 @@ function WorkPage({ isDarkMode }: { isDarkMode: boolean }) {
                 textAlign: "center",
                 letterSpacing: "0.01em",
                 boxShadow: "0 2px 8px 0 rgba(0,0,0,0.04)",
-                color: isDarkMode ? "#a78bfa" : "#fb923c", // optional: highlight skills too
+                color: isDarkMode ? "#a78bfa" : "#fb923c", 
               }}
             >
               {skill}
